@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: wordpress-stack  
+  labels:
+    app.kubernetes.io/name: mysql
+    app.kubernetes.io/release: alpha
+    app.kubernetes.io/version: "0.1"
+    app.kubernetes.io/environment: dev
+    app.kubernetes.io/namespace: wordpress-stack
+    app.kubernetes.io/part-of: wordpress-project
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mysql
+      app.kubernetes.io/release: alpha
+      app.kubernetes.io/version: "0.1"
+      app.kubernetes.io/environment: dev
+      app.kubernetes.io/namespace: wordpress-stack
+      app.kubernetes.io/part-of: wordpress-project      
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mysql
+        app.kubernetes.io/release: alpha
+        app.kubernetes.io/version: "0.1"
+        app.kubernetes.io/environment: dev
+        app.kubernetes.io/namespace: wordpress-stack
+        app.kubernetes.io/part-of: wordpress-project          
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:5.7
+          envFrom:
+            - secretRef:
+                name: mysql-credentials
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: db
+              mountPath: /var/lib/mysql
+              readOnly: false
+      volumes:
+        - name: db
+          emptyDir:
+         
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-credentials
+  namespace: wordpress-stack
+type: opaque
+stringData:
+  MYSQL_ROOT_PASSWORD: wordpress-root-pass
+  MYSQL_DATABASE: wordpress
+  MYSQL_USER: admin
+  MYSQL_PASSWORD: db-pass
+
+     
