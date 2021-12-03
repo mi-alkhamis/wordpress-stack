@@ -1,0 +1,63 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filebrowser
+  namespace: wordpress-stack
+  labels:
+    app.kubernetes.io/name: filebrowser
+    app.kubernetes.io/tier: frontend
+    app.kubernetes.io/version: "0.1"
+    app.kubernetes.io/environment: dev
+    app.kubernetes.io/namespace: wordpress-stack
+    app.kubernetes.io/part-of: wordpress-project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: filebrowser
+      app.kubernetes.io/tier: frontend
+      app.kubernetes.io/version: "0.1"
+      app.kubernetes.io/environment: dev
+      app.kubernetes.io/namespace: wordpress-stack
+      app.kubernetes.io/part-of: wordpress-project
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: filebrowser
+        app.kubernetes.io/tier: frontend
+        app.kubernetes.io/version: "0.1"
+        app.kubernetes.io/environment: dev
+        app.kubernetes.io/namespace: wordpress-stack
+        app.kubernetes.io/part-of: wordpress-project
+    spec:
+      containers:
+        - name: filebrowser  
+          image: filebrowser/filebrowser:v2
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: file-wordpress-storage
+              mountPath: /srv
+              readOnly: false
+      volumes:
+        - name: file-wordpress-storage
+          persistentVolumeClaim:
+            claimName: wordpress-storage
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: file
+  namespace: wordpress-stack
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: filebrowser
+    app.kubernetes.io/tier: frontend
+    app.kubernetes.io/version: "0.1"
+    app.kubernetes.io/environment: dev
+    app.kubernetes.io/namespace: wordpress-stack
+    app.kubernetes.io/part-of: wordpress-project
+  ports:
+    - port: 80

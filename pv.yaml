@@ -1,0 +1,56 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vol-01
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  persistentVolumeReclaimPolicy: Delete
+  volumeMode: Filesystem
+  hostPath:
+    path: /mnt/vol-01
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vol-02
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 5Gi
+  persistentVolumeReclaimPolicy: Delete
+  volumeMode: Filesystem
+  hostPath:
+    path: /mnt/vol-02
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vol-03
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 3Gi
+  persistentVolumeReclaimPolicy: Delete
+  volumeMode: Filesystem
+  hostPath: 
+    path: /mnt/vol-03
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata: 
+  name: vol-04
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 1Gi
+  persistentVolumeReclaimPolicy: Delete
+  volumeMode: Filesystem
+  hostPath:
+    path: /mnt/vol-04
