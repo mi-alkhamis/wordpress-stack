@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin
+  namespace: wordpress-stack
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: phpmyadmin
+    app.kubernetes.io/tier: frontend 
+    app.kubernetes.io/version: "0.1"
+    app.kubernetes.io/environment: dev
+    app.kubernetes.io/namespace: wordpress-stack
+    app.kubernetes.io/part-of: wordpress-project
+  ports:
+    - port: 80
