@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: wordpress-stack
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: mysql
+    app.kubernetes.io/release: alpha
+    app.kubernetes.io/version: "0.1"
+    app.kubernetes.io/environment: dev
+    app.kubernetes.io/namespace: wordpress-stack
+    app.kubernetes.io/part-of: wordpress-project          
+  ports:
+    - port: 3306
