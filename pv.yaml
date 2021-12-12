@@ -8,7 +8,7 @@ spec:
     - ReadWriteOnce
   capacity:
     storage: 10Gi
-  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Recycle
   volumeMode: Filesystem
   hostPath:
     path: /mnt/vol-01
@@ -19,10 +19,10 @@ metadata:
   name: vol-02
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   capacity:
     storage: 5Gi
-  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Recycle
   volumeMode: Filesystem
   hostPath:
     path: /mnt/vol-02
@@ -36,21 +36,7 @@ spec:
     - ReadWriteMany
   capacity:
     storage: 3Gi
-  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Recycle
   volumeMode: Filesystem
   hostPath: 
     path: /mnt/vol-03
----
-apiVersion: v1
-kind: PersistentVolume
-metadata: 
-  name: vol-04
-spec:
-  accessModes:
-    - ReadWriteMany
-  capacity:
-    storage: 1Gi
-  persistentVolumeReclaimPolicy: Delete
-  volumeMode: Filesystem
-  hostPath:
-    path: /mnt/vol-04
