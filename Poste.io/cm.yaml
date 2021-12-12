@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: mail-config
+  namespace: wordpress-stack     
+data:
+ TZ: Asia/Tehran
+ HTTPS: !!str ON

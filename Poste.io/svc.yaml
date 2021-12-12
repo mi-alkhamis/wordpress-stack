@@ -1,0 +1,33 @@
+---  
+apiVersion: v1
+kind: Service
+metadata:
+  name: mail
+  namespace: wordpress-stack        
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: mail
+    app.kubernetes.io/tier: frontend
+    app.kubernetes.io/version: "0.1"
+    app.kubernetes.io/environment: dev
+    app.kubernetes.io/namespace: wordpress-stack
+    app.kubernetes.io/part-of: wordpress-project
+  ports:
+    - port: 80
+      name: http
+    - port: 443
+      name: https
+    - port: 25
+      name: smtp
+    - port: 110
+      name: pop3
+    - port: 143
+      name: imap
+    - port: 465
+      name: smtps
+    - port: 587
+      name: imaps
+    - port: 995
+      name: pop3s
+    
