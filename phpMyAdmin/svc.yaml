@@ -5,7 +5,7 @@ metadata:
   name: phpmyadmin
   namespace: wordpress-stack
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app.kubernetes.io/name: phpmyadmin
     app.kubernetes.io/tier: frontend 
