@@ -36,8 +36,8 @@ spec:
           - name: wordpress
             image: wordpress:5
             envFrom:
-              - configMapRef:
-                  name: mail-config
+              - secretRef:
+                  name: wordpress-credentials
             ports:
               - containerPort: 80
               - containerPort: 443
