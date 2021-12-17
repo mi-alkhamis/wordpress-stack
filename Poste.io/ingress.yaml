@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mail
+  namespace: wordpress-stack
+  annotations:
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+    
+
+spec:
+  tls:
+    - hosts:
+        - mail.dwsclass.io
+      secretName: dwsclass
+  rules:
+    - host: mail.dwsclass.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mail
+                port:
+                  number: 80
+                  

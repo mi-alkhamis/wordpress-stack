@@ -6,4 +6,5 @@ metadata:
   namespace: wordpress-stack     
 data:
  TZ: Asia/Tehran
- HTTPS: !!str ON
+ HTTPS: !!str OFF
+

@@ -5,7 +5,7 @@ metadata:
   name: mail
   namespace: wordpress-stack        
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app.kubernetes.io/name: mail
     app.kubernetes.io/tier: frontend
