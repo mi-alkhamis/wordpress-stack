@@ -52,15 +52,8 @@ spec:
             - name: mail-data
               mountPath: /data
               readOnly: false
-            # - name: mail-server-ini-file
-            #   mountPath: /data/server.ini
-            #   subPath: server.ini
-            #   readOnly: false
       volumes:
         - name: mail-data
           persistentVolumeClaim: 
             claimName: mail-storage
-        - name: mail-server-ini-file
-          configMap:
-            name: mail-server-ini
-
+        
