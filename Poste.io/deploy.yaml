@@ -52,8 +52,29 @@ spec:
             - name: mail-data
               mountPath: /data
               readOnly: false
+            - name: server-ini
+              mountPath: /data/server.ini
+              subPath: server.ini
+              readOnly: false
+            - name: usersdb
+              mountPath: /data/users.db
+              subPath: users.db
+              readOnly: false
+            - name: davdb
+              mountPath: /data/dav.db
+              subPath: dav.db
+              readOnly: false
       volumes:
         - name: mail-data
           persistentVolumeClaim: 
             claimName: mail-storage
+        - name: server-ini
+          configMap:
+            name: mail-server-ini-file
+        - name: usersdb
+          configMap:
+            name: mail-userdb-file
+        - name: davdb
+          configMap: 
+            name: mail-davdb-file
         

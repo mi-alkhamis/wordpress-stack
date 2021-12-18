@@ -5,8 +5,6 @@ metadata:
   namespace: wordpress-stack
   annotations:
     traefik.ingress.kubernetes.io/redirect-entry-point: https
-    
-
 spec:
   tls:
     - hosts:
