@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
-  namespace: wordpress-stack  
+  namespace: wordpress-stack
   labels:
     app.kubernetes.io/name: mysql
     app.kubernetes.io/release: alpha
@@ -11,7 +11,7 @@ metadata:
     app.kubernetes.io/environment: dev
     app.kubernetes.io/namespace: wordpress-stack
     app.kubernetes.io/part-of: wordpress-project
-spec: 
+spec:
   replicas: 1
   selector:
     matchLabels:
@@ -20,7 +20,7 @@ spec:
       app.kubernetes.io/version: "0.1"
       app.kubernetes.io/environment: dev
       app.kubernetes.io/namespace: wordpress-stack
-      app.kubernetes.io/part-of: wordpress-project      
+      app.kubernetes.io/part-of: wordpress-project
   template:
     metadata:
       labels:
@@ -29,7 +29,7 @@ spec:
         app.kubernetes.io/version: "0.1"
         app.kubernetes.io/environment: dev
         app.kubernetes.io/namespace: wordpress-stack
-        app.kubernetes.io/part-of: wordpress-project          
+        app.kubernetes.io/part-of: wordpress-project
     spec:
       containers:
         - name: mysql

@@ -3,13 +3,7 @@ kind: Ingress
 metadata:
   name: mail
   namespace: wordpress-stack
-  annotations:
-    traefik.ingress.kubernetes.io/redirect-entry-point: https
 spec:
-  tls:
-    - hosts:
-        - mail.dwsclass.io
-      secretName: dwsclass
   rules:
     - host: mail.dwsclass.io
       http:
@@ -21,4 +15,3 @@ spec:
                 name: mail
                 port:
                   number: 80
-                  
