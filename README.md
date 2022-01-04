@@ -27,7 +27,7 @@ The stack is tested on Kubernetes 1.21.5, should work on earlier versions.
 ### Prerequisites:
 
   1. Kubernetes 1.21+ must be installed.
-  2. Kubernetes should support ingress service type
+  2. Kubernetes should support LoadBalancer type
   3. OpenSSL to create self-signed certificates.
 
 
